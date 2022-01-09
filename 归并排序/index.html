@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const mergeSort = function (arr) {
+      const len = arr.length;
+      if (len < 2) {
+        return arr;
+      }
+      let mid = Math.floor(len / 2),
+        left = arr.slice(0, mid),
+        right = arr.slice(mid);
+      return merge(mergeSort(left), mergeSort(right));
+    };
+    const merge = function (left, right) {
+      // [0,1,2,3,7] [3,4,5,6]
+      // left, right 皆为已排过序的数组 从小到大， 相等或者长度相差为1
+      let result = [];
+      // 排序从小到大排序 数组皆是比较大的有序的
+      while (left.length && right.length) {
+        if (left[0] > right[0]) {
+          result.push(right.shift());
+        } else {
+          result.push(left.shift());
+        }
+      }
+      while (left.length) {
+        result.push(left.shift());
+      }
+      while (right.length) {
+        result.push(right.shift());
+      }
+      return result;
+    };
+    const inputArr = [4, 5, 1, 8, 2];
+    const inputArr2 = [4213, 1231, 123, 123131, 123124, 21, 13214];
+    console.log(mergeSort(inputArr));
+    console.log(mergeSort(inputArr2));
+  </script>
+</html>

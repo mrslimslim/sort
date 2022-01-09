@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const inputArr = [3, 1, 4, 6, 5, 2, 10, 9];
+      const inputArr2 = [3, 1, 2, 0];
+      const sort = function (arr) {
+        let tmp;
+        if (arr.length <= 1) return arr;
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+              // tmp = arr[i];
+              // arr[i] = arr[j];
+              // arr[j] = tmp;
+              arr[i] = [arr[j], (arr[j] = arr[i])][0];
+            }
+          }
+        }
+        return arr;
+      };
+      console.time();
+      console.log(sort(inputArr));
+      console.log(sort(inputArr));
+      console.log(sort(inputArr));
+      console.log(sort(inputArr));
+      console.timeEnd();
+    </script>
+  </body>
+</html>
