@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function LinkNode(val, next) {
+      this.val = val === undefined ? null : val;
+      this.next = next === undefined ? null : val;
+    }
+
+    function mergeSort(head) {
+      if (head === null || head.next === null) return head;
+      const mid = findMid(head);
+      return merge(mergeSort(head), mergeSort(mid));
+    }
+
+    function findMid(head) {
+      const slow = head,
+        fast = head.next;
+      while (fast.next !== null && fast.next.next !== null) {
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+      const mid = slow.next;
+      slow.next = null;
+      return mid;
+    }
+
+    function merge(left, right) {
+      const newL = new LinkNode(0),
+        p = newL;
+      while (left.next && right.next) {
+        if (left.val < right.val) {
+          p.next = left;
+          left = left.next;
+        } else {
+          p.next = right;
+          right = right.next;
+        }
+        p = p.next;
+      }
+      if (left.next !== null) p.next = left;
+      if (right.next !== null) p.next = right;
+      newL = newL.next;
+      return newL;
+    }
+  </script>
+</html>
